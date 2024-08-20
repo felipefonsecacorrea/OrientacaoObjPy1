@@ -68,4 +68,4 @@ class PessoaJuridica(Pessoa):
         else: 
             return rendimento* 0.15
         
-        return super().calcular_imposto(rendimento, lucro)
+        #return super().calcular_imposto(rendimento, lucro)

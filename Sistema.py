@@ -18,7 +18,7 @@ def main():
 
         if opcao == 1 :
             while True:
-                opcao_pf = int(input("Escolha uma opção: cadastrar Pessoa Fisica / 2 - listar Pessoa Fisica / 0 - Voltar ao menu anterior: "))
+                opcao_pf = int(input(" Escolha uma opção: 1- cadastrar Pessoa Fisica / 2 - listar Pessoa Fisica / 0 - Voltar ao menu anterior: "))
                 print("")
 
                 if opcao_pf == 1:
@@ -61,7 +61,26 @@ def main():
                             print(f"Data de Nascimentto: {cada_pf.dataNascimento.strftime('%d/%m/%Y')}")
                             print(f"Imposto a ser pago: {cada_pf.calcular_imposto(cada_pf.rendimento)}")
                             print("")
+                    
+                        opcaoRemover = input("gostaria de remover alguma pessoa? [S|N]: ").upper()
+
+                        if opcaoRemover == "S":
+                            cpfRemover = input("Digite o CPF que gostaria de remover: ")
+                            pessoa_encontrada = False
+                            for cada_pf in lista_pf:
+                                if cpfRemover == cada_pf.cpf:
+                                    print(f"{cada_pf.nome}, removido !")
+                                    lista_pf.remove(cada_pf)
+                                    pessoa_encontrada = True
+                                    break
+
+                            if not pessoa_encontrada:
+                                print("Nenhum cpf encontrada")
+
                             
+                               
+                        break
+
                     else:
                         print("Lista Vazia !")
 
