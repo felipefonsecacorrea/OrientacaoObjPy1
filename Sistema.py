@@ -78,7 +78,7 @@ def main():
 
         elif opcao == 2:
             while True:
-                opcao_pj = int(input("Escolha uma opção: cadastrar Pessoa Juridica / 2 - listar Pessoa Juridica / 0 - Voltar ao menu anterior: "))
+                opcao_pj = int(input("Escolha uma opção: 1 - cadastrar Pessoa Juridica / 2 - listar Pessoa Juridica / 0 - Voltar ao menu anterior: "))
                 print("")
                 
                 if opcao_pj == 1:
@@ -88,7 +88,17 @@ def main():
                     novapj.nome = input("Digite o nome da Pessoa Juridica: ")
                     novapj.cnpj = input("Digite o CNPJ da Pessoa Juridica: ")
                     novapj.rendimento = float(input("Digite o rendimento mensal (Digite somente numeros): "))
-                    novapj.lucro = float(input("Digite seu lucro mensal (Digite somente numeros): "))
+                    
+                    teste = True
+
+                    while teste == True:
+                        novapj.lucro = float(input("Digite seu lucro mensal (Digite somente numeros): "))
+                        if novapj.lucro > novapj.rendimento:
+                            print("O lucro não poe ser maior que o rendimento, gitite novamente o lucro.")
+                            print("")
+                        else:
+                            teste = False
+                        
                     
                     novo_end_pj.logradouro = input("Digite o logradouro: ")
                     novo_end_pj.numero = input("Digite o numero do endereço: ")
@@ -112,6 +122,13 @@ def main():
                             print("")
                     else:
                         print("Lista Vazia !")
+
+                elif opcao_pj == 0:
+                    print("Voltando ao menu anterior...")
+                    break
+
+                else:
+                    print("Opção invalida, por favor digite uma opção valida !")
 
 
         elif opcao == 0:
