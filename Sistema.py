@@ -4,12 +4,13 @@
 
 import __main__
 from datetime import date, datetime
-from pessoa import Endereco, PessoaFisica
+from pessoa import Endereco, PessoaFisica, PessoaJuridica
 
 
 def main():
 
     lista_pf = []
+    lista_pj = []
 
     while True:
         opcao = int(input("Escolha uma opção: 1- pessoa fisica / 2 -  pessoa juridica / 0 - Sair: "))
@@ -17,14 +18,14 @@ def main():
 
         if opcao == 1 :
             while True:
-                opcao_pf = int(input("Escolha uma opção: cadastrar pessoa fisica / 2 - listar pessoa fisica / 0 - Voltar ao menu anterior: "))
+                opcao_pf = int(input("Escolha uma opção: cadastrar Pessoa Fisica / 2 - listar Pessoa Fisica / 0 - Voltar ao menu anterior: "))
                 print("")
-                
+
                 if opcao_pf == 1:
                     novapf = PessoaFisica()#importando a pessoa fisica para usar como molde
                     novo_end_pf = Endereco()#importando o enderco para usar como molde
 
-                    novapf.nome = input("Digite o nome da pessoa fisica: ")
+                    novapf.nome = input("Digite o nome da Pessoa fisica: ")
                     novapf.cpf = input("Digite o CPF: ")
                     novapf.rendimento = float(input("Digite o rendimento mensal (Digite somente numeros): "))
                     
@@ -48,6 +49,8 @@ def main():
                     novapf.endereco = novo_end_pf
 
                     lista_pf.append(novapf)
+
+                    print("Pessoa Juridica cadastrada com sucesso !")
 
                 elif opcao_pf == 2:
                     if lista_pf:
@@ -74,8 +77,42 @@ def main():
                 print("")
 
         elif opcao == 2:
-            print("Funcionalidade pessoa juridica ainda não implementada.")
-            pass
+            while True:
+                opcao_pj = int(input("Escolha uma opção: cadastrar Pessoa Juridica / 2 - listar Pessoa Juridica / 0 - Voltar ao menu anterior: "))
+                print("")
+                
+                if opcao_pj == 1:
+                    novapj = PessoaJuridica()
+                    novo_end_pj = Endereco()
+
+                    novapj.nome = input("Digite o nome da Pessoa Juridica: ")
+                    novapj.cnpj = input("Digite o CNPJ da Pessoa Juridica: ")
+                    novapj.rendimento = float(input("Digite o rendimento mensal (Digite somente numeros): "))
+                    novapj.lucro = float(input("Digite seu lucro mensal (Digite somente numeros): "))
+                    
+                    novo_end_pj.logradouro = input("Digite o logradouro: ")
+                    novo_end_pj.numero = input("Digite o numero do endereço: ")
+                    end_comercial = input("este enderço é comercial ? [S/N]: ") # solicitar a resposta
+                    novo_end_pj.endereco_Comercial = end_comercial.strip().upper() == "S"
+
+                    novapj.endereco = novo_end_pj
+
+                    lista_pj.append(novapj)
+
+                    print("Pessoa Juridica cadastrada com sucesso !")
+
+                elif opcao_pj == 2:
+                    if lista_pj:
+                        for cada_pj in lista_pj:
+                            print(f"Nome: {cada_pj.nome}")#mesmo atrubuto presente na classe em pessoa 
+                            print(f"CNPJ: {cada_pj.cnpj}")
+                            print(f"Rendimeno: {cada_pj.rendimento}")
+                            print(f"Lucro: {cada_pj.lucro}")
+                            print(f"Imposto a ser pago: {cada_pj.calcular_imposto(cada_pj.rendimento, cada_pj.lucro)}")
+                            print("")
+                    else:
+                        print("Lista Vazia !")
+
 
         elif opcao == 0:
             print("Obrigado por utilizar nosso sistema ! ;)")

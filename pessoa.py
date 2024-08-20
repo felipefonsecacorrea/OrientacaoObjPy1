@@ -51,4 +51,21 @@ class PessoaFisica(Pessoa):
         
 #CLASSE PESSOA JURIDICA
 class PessoaJuridica(Pessoa): 
-    pass
+    def __init__(self, nome='', rendimento=0, endereco=None, cnpj = "", lucro = 0):
+
+        self.cnpj = cnpj
+        self.lucro = lucro
+        
+        if endereco is None:
+            endereco = Endereco()
+
+        super().__init__(nome, rendimento, endereco)
+
+    def calcular_imposto(self, rendimento, lucro):
+        
+        if lucro > 20000:
+            return (rendimento* 0.15) + (rendimento * 0.1)
+        else: 
+            return rendimento* 0.15
+        
+        return super().calcular_imposto(rendimento, lucro)
