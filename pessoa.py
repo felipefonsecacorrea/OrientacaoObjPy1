@@ -51,7 +51,7 @@ class PessoaFisica(Pessoa):
         
 #CLASSE PESSOA JURIDICA
 class PessoaJuridica(Pessoa): 
-    def __init__(self, nome='', rendimento=0, endereco=None, cnpj = "", lucro = 0):
+    def __init__(self, nome='', rendimento=0.0, endereco=None, cnpj = "", lucro = 0.0):
 
         self.cnpj = cnpj
         self.lucro = lucro

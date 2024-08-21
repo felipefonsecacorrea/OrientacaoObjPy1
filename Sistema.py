@@ -60,6 +60,7 @@ def main():
                             print(f"Endereço: {cada_pf.endereco}")
                             print(f"Data de Nascimentto: {cada_pf.dataNascimento.strftime('%d/%m/%Y')}")
                             print(f"Imposto a ser pago: {cada_pf.calcular_imposto(cada_pf.rendimento)}")
+                            print(f"Rendimento: {cada_pf.rendimento}")
                             print("")
                     
                         opcaoRemover = input("gostaria de remover alguma pessoa? [S|N]: ").upper()
@@ -77,9 +78,32 @@ def main():
                             if not pessoa_encontrada:
                                 print("Nenhum cpf encontrada")
 
+                        opcaoAlterar = input("Gostaria de alterar algum campo? [S|N]").upper()
+
+                        if opcaoAlterar == "S":
+                            cpfAltera = input("Digite o CPF que gostaria de alterar: ")
                             
-                               
-                        break
+                            opcaoAlterarPf = input("Qual campo gostaria de alterar? [Nome = N | Rendimento = R | Logradouro = L | NNumero = N]: ").upper()
+                            
+                            for cada_pf in lista_pf:
+                                if cpfAltera == cada_pf.cpf:            
+                                    if opcaoAlterarPf == "N":
+                                        novoNome = input(f"O nome atual é {cada_pf.nome}, Digite o novo: ")
+                                        cada_pf.nome = novoNome
+                                    elif opcaoAlterarPf == "R":
+                                        novoRendimento = int(input(f"O rendimento atual é {cada_pf.rendimento}, Digite o novo: "))
+                                        cada_pf.rendimento = novoRendimento
+                                    elif opcaoAlterarPf == "L":
+                                        novoLogradouro = input(f"O logradouro atual é {cada_pf.logradouro}, Digite o novo: ")
+                                        cada_pf.logradouro = novoLogradouro
+                                    elif opcaoAlterarPf == "N":
+                                        novoNumero = input(f"O logradouro atual é {cada_pf.logradouro}, Digite o novo : ")
+                                        cada_pf.numero = novoNumero
+                                    else:
+                                        print("opção Invalida !")
+                                else:
+                                    print("CPF não encontrado !")
+                            break
 
                     else:
                         print("Lista Vazia !")
@@ -113,7 +137,7 @@ def main():
                     while teste == True:
                         novapj.lucro = float(input("Digite seu lucro mensal (Digite somente numeros): "))
                         if novapj.lucro > novapj.rendimento:
-                            print("O lucro não poe ser maior que o rendimento, gitite novamente o lucro.")
+                            print("O lucro não pode ser maior que o rendimento, digite novamente o lucro.")
                             print("")
                         else:
                             teste = False
